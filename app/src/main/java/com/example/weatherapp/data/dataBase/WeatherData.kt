@@ -7,20 +7,20 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "CityWeather")
 data class WeatherData(
     @PrimaryKey(autoGenerate = true)
-    var id:Int = 0,
+    val id: Int = 0,
 
     /*@ColumnInfo(name = "city")
     var city:String,*/
 
     @ColumnInfo(name = "temp")
-    var temp:String,
+    val temp: String,
 
     @ColumnInfo(name = "season")
-    var season:String,
+    val season: String,
 
     @ColumnInfo(name = "feelsLike")
-    val feelsLike:String,
+    val feelsLike: String,
 
     @ColumnInfo(name = "cityName")
-    var cityName:String
+    val cityName: String
 )

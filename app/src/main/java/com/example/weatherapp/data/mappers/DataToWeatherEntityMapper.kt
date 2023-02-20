@@ -1,20 +1,20 @@
 package com.example.weatherapp.data.mappers
 
-import android.util.Log
 import com.example.weatherapp.data.dataBase.WeatherData
 import com.example.weatherapp.domain.WeatherEntity
 
-class DataToWeatherEntityMapper(weatherData: WeatherData) {
+class DataToWeatherEntityMapper {
 
-    val weatherDataToEntity: (data:WeatherData) -> WeatherEntity = {it.toEntity(weatherData)}
 
-    private fun WeatherData.toEntity(data: WeatherData) =
+    val weatherDataToEntity: (data: WeatherData) -> WeatherEntity = { it.toEntity() }
+
+    private fun WeatherData.toEntity() =
         WeatherEntity(
-            id = 1,
-            temp = data.temp,
-            season = data.season,
-            feelsLike = data.feelsLike,
-            cityName = data.cityName
+            //id = id,
+            temp = temp,
+            season = season,
+            feelsLike = feelsLike,
+            cityName = cityName
         )
 
 

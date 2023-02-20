@@ -1,8 +1,8 @@
 package com.example.weatherapp.domain
 
-data class CityEntity (
+data class CityEntity(
     val cityName: String,
-    val lat: String,
-    val lon: String,
-    var isLiked:Boolean
+    val lat: Double,
+    val lon: Double,
+    var isLiked: Boolean
 )

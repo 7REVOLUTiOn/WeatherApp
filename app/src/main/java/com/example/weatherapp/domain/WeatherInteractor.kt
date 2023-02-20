@@ -1,25 +1,17 @@
 package com.example.weatherapp.domain
 
-import android.content.Context
-import com.example.weatherapp.data.localRep.LocalRepository
-import com.example.weatherapp.data.localRep.LocalRepositoryImpl
-import com.example.weatherapp.data.remoteRepository.RemoteRepository
-import com.example.weatherapp.data.remoteRepository.RemoteRepositoryImpl
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import android.app.Application
 
-class WeatherInteractor(context: Context) {
+class WeatherInteractor(application: Application) {
 
-    val remoteRep: RemoteRepository = RemoteRepositoryImpl()
-    val localRep: LocalRepository = LocalRepositoryImpl(context)
+    /*val getCities: IGetCitiesFromRemoteRepository = GetCitiesFromRemoteRepositoryImpl()
+    val getWeather: IGetWeatherFromRemoteRepository = GetWeatherFromRemoteRepositoryImpl()
+    val localRep: ILocalRepository = LocalRepositoryImpl(application)
 
-    suspend fun invoke() = withContext(Dispatchers.IO){
-        val weather = remoteRep.getWeatherFromYandex()
-        if (weather != null){
-            localRep.saveData(weather)
-        }
+    suspend fun invoke() = withContext(Dispatchers.IO) {
+        val weather = getWeather.getWeatherFromYandex()
 
         return@withContext weather
-    }
+    }*/
 
 }

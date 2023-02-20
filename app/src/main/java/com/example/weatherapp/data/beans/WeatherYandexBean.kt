@@ -23,7 +23,7 @@ data class WeatherYandexBean(
         @SerializedName("temp") val temp: String,
         @SerializedName("wind_dir") val windDir: String?,
         @SerializedName("wind_gust") val windGust: Double?,
-        @SerializedName("wind_speed") val windSpeed: Int?
+        @SerializedName("wind_speed") val windSpeed: Float?,
     )
 
     data class Forecast(

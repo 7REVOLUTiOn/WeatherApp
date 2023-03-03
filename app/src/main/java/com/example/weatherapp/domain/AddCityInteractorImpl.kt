@@ -1,5 +1,8 @@
 package com.example.weatherapp.domain
 
+import com.example.weatherapp.domain.entities.CityEntity
+import com.example.weatherapp.domain.entities.CityWeatherEntity
+import com.example.weatherapp.domain.entities.WeatherEntity
 import com.example.weatherapp.domain.interfaces.IAddCityInteractor
 import com.example.weatherapp.utils.TRezult
 import kotlinx.coroutines.Dispatchers
@@ -8,7 +11,7 @@ import kotlinx.coroutines.withContext
 class AddCityInteractorImpl(
     private val getCitiesFromRemoteRepositoryUseCase: suspend () -> TRezult<List<CityEntity>>,
     private val getWeatherFromRemoteRepositoryUseCase: suspend () -> TRezult<WeatherEntity>,
-    private val getDataFromLocalRepositoryUseCase: suspend () -> List<WeatherEntity>,
+    private val getDataFromLocalRepositoryUseCase: suspend () -> List<CityWeatherEntity>,
 ) : IAddCityInteractor {
 
     /*val getCities: IGetCitiesFromRemoteRepository = GetCitiesFromRemoteRepositoryImpl()
@@ -19,7 +22,7 @@ class AddCityInteractorImpl(
         withContext(Dispatchers.IO) {
             // TODO: УДАЛИТЬ
             val citiesFromRemoteRep = getCitiesFromRemoteRepositoryUseCase.invoke()
-            val citiesFromLocalRep = getDataFromLocalRepositoryUseCase.invoke()
+            val cityWeatherEntityFromLocalRep = getDataFromLocalRepositoryUseCase.invoke()
             //val weather = getWeatherFromRemoteRepositoryUseCase.invoke()
             //val cities =
             //val cities = getCitiesFromRemoteRepositoryUseCase.invoke()
@@ -39,8 +42,8 @@ class AddCityInteractorImpl(
                 is TRezult.Error -> citiesFromRemoteRep
                 is TRezult.Success -> {
                     citiesFromRemoteRep.data.forEach { cityNtework ->
-                        val isLike = citiesFromLocalRep.find { cityBD ->
-                            cityNtework.cityName == cityBD.cityName
+                        val isLike = cityWeatherEntityFromLocalRep.find { cityBD ->
+                            cityNtework.cityName == cityBD.city.cityName
                         } != null
                         cityNtework.isLiked = isLike
                     }

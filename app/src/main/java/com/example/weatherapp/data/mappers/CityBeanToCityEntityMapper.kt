@@ -1,7 +1,7 @@
 package com.example.weatherapp.data.mappers
 
 import com.example.weatherapp.data.beans.CityGitBean
-import com.example.weatherapp.domain.CityEntity
+import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.utils.logError
 
 class CityBeanToCityEntityMapper {

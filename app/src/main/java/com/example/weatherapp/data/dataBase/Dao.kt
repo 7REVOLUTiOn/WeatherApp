@@ -7,8 +7,8 @@ import androidx.room.Dao
 interface Dao {
 
     //Weather DataBase
-    @Query("SELECT * FROM CityWeather")
-    fun getAllWeathers(): List<WeatherData>
+    @Query("SELECT * FROM CityWeatherData")
+    fun getAllWeathers(): List<CityWeatherData>
 
 
 }

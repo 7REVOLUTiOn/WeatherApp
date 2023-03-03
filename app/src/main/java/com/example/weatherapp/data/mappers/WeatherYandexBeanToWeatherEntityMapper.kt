@@ -2,7 +2,7 @@ package com.example.weatherapp.data.mappers
 
 import android.util.Log
 import com.example.weatherapp.data.beans.WeatherYandexBean
-import com.example.weatherapp.domain.WeatherEntity
+import com.example.weatherapp.domain.entities.WeatherEntity
 import com.example.weatherapp.utils.logError
 
 class WeatherYandexBeanToWeatherEntityMapper {
@@ -16,7 +16,6 @@ class WeatherYandexBeanToWeatherEntityMapper {
             temp = fact!!.temp,
             season = fact.season,
             feelsLike = fact.feelsLike,
-            cityName = "Moscow"
         )
     }.getOrElse {
         it.logError()

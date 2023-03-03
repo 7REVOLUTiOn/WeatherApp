@@ -9,6 +9,7 @@ import com.example.weatherapp.data.localRep.LocalRepositoryImpl
 import com.example.weatherapp.data.retrofit.CitiesAPI
 import com.example.weatherapp.data.retrofit.WeatherAPI
 import com.example.weatherapp.domain.AddCityInteractorImpl
+import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.domain.interfaces.IAddCityInteractor
 import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.domain.interfaces.IGetWeatherFromRemoteRepository
@@ -49,8 +50,9 @@ val repositories = module {
 
         AddCityInteractorImpl(
             getCitiesFromRemoteRepositoryUseCase = remoteRepGetCities::getCitiesFromGit, // TODO: можно записать вот в таком формате
-            getWeatherFromRemoteRepositoryUseCase = {remoteRepGetWeather.getWeatherFromYandex()},
-            getDataFromLocalRepositoryUseCase = {localRep.getAllWeather()}
+            getWeatherFromRemoteRepositoryUseCase = {
+                remoteRepGetWeather.getWeatherFromYandex(city = get<CityEntity>()) },
+            getDataFromLocalRepositoryUseCase = { localRep.getAllCityWeatherEntityFromDb() }
         )
     }
 }

@@ -2,7 +2,7 @@ package com.example.weatherapp.data.implementations
 
 import com.example.weatherapp.data.beans.CityGitBean
 import com.example.weatherapp.data.mappers.CityBeanToCityEntityMapper
-import com.example.weatherapp.domain.CityEntity
+import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.utils.TRezult
 import com.example.weatherapp.utils.WeatherException

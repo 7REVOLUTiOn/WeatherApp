@@ -31,6 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        //ViewBinding
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -39,6 +43,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -46,6 +52,10 @@ dependencies {
     // KOIN
     implementation "io.insert-koin:koin-core:2.0.1"
     implementation "io.insert-koin:koin-android:2.0.1"
+    implementation "io.insert-koin:koin-androidx-scope:2.0.1"
+    // or Koin for Android Architecture ViewModel
+    implementation "io.insert-koin:koin-androidx-viewmodel:2.0.1"
+
 
     // testKoin
     testImplementation "org.koin:koin-test:2.0.1"
@@ -53,7 +63,6 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:2.1.0" // Test helpers for LiveData
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1'
     testImplementation "io.insert-koin:koin-test:2.0.1"
-
 
 
 
@@ -71,5 +80,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0' // TODO: что будет если удалить?
 
+    //LiveData + ViewModel
+    def lifecycle_version = "2.5.1"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
+    //Jetpack Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+    //viewbindingdelegate
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
 }

@@ -7,8 +7,14 @@ import androidx.room.Dao
 interface Dao {
 
     //Weather DataBase
-    @Query("SELECT * FROM CityWeather")
-    fun getAllWeathers(): List<WeatherData>
+    @Query("SELECT * FROM CityWeatherData")
+    fun getAllWeathers(): List<CityWeatherData>
+
+    @Insert
+    fun addCityToLocalRepository(cityWeatherData: CityWeatherData)
+
+    @Query ("DELETE FROM CityWeatherData WHERE cityName = :cityName")
+    fun deleteCityFromLocalRepository(cityName:String)
 
 
 }

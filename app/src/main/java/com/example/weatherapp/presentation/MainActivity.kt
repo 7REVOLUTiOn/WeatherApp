@@ -1,14 +1,11 @@
 package com.example.weatherapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.R
-import com.example.weatherapp.data.localRep.ILocalRepository
+import com.example.weatherapp.domain.interfaces.ILocalRepository
 import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.domain.interfaces.IGetWeatherFromRemoteRepository
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 
@@ -17,12 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val getCities: IGetCitiesFromRemoteRepository by inject()
         val getWeather: IGetWeatherFromRemoteRepository by inject()
         val localRep: ILocalRepository by inject()
 
-        MainScope().launch {
+
+        //MainScope().launch {
 
             //val cities = getCities.getCitiesFromGit()
             //val weather = getWeather.getWeatherFromYandex()
@@ -45,6 +42,6 @@ class MainActivity : AppCompatActivity() {
                 logInfo("")
             }*/
 
-        }
+        //}
     }
 }

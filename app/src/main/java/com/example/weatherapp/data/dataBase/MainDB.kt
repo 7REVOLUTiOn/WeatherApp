@@ -5,7 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [WeatherData::class], version = 1)
+
+@Database(entities = [CityWeatherData::class], version = 1)
 abstract class MainDB : RoomDatabase() {
 
 
@@ -31,7 +32,7 @@ abstract class MainDB : RoomDatabase() {
                 return instance
             }
         }
-    }
 
+    }
 
 }

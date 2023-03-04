@@ -12,19 +12,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GetWeatherFromRemoteRepositoryImpl(
-    private val getWeatherFromRemoteRepUseCase: suspend (lat:Double, lon:Double) -> WeatherYandexBean
+    private val getWeatherFromRemoteRepUseCase: suspend (lat: Double, lon: Double) -> WeatherYandexBean
 ) : IGetWeatherFromRemoteRepository { //TODO(ПОСТАВИТЬ НА DI WetherApi)
 
     // TODO: через DI
 
-    override suspend fun getWeatherFromYandex(city: CityEntity): TRezult<WeatherEntity> = //TODO(ПЕРЕИМЕНОВАТЬ)
+    override suspend fun getWeatherFromYandex(city: CityEntity): TRezult<WeatherEntity> =
+        //TODO(ПЕРЕИМЕНОВАТЬ)
         withContext(Dispatchers.IO) {
             return@withContext runCatching {
                 val weatherBeanToEntity =
                     WeatherYandexBeanToWeatherEntityMapper().weatherBeanToEntity
-                val beanWeather = getWeatherFromRemoteRepUseCase.invoke(city.lat,city.lon)
+                val beanWeather = getWeatherFromRemoteRepUseCase.invoke(city.lat, city.lon)
                 val mapBeanRezult = weatherBeanToEntity(beanWeather)
-                if (mapBeanRezult != null) { // TODO: удалить (готово)
+                if (mapBeanRezult != null) {
                     TRezult.Success(mapBeanRezult)
                 } else {
                     throw Exception("Mapping error")

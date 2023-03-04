@@ -14,6 +14,6 @@ data class CityWeatherData(
     val city: CityEntity,
 
     @Embedded
-    val weather: WeatherEntity
+    val weather: WeatherEntity // TODO: разве он не может быть null ?
 
 )

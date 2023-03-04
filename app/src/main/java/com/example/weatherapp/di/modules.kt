@@ -51,6 +51,11 @@ val repositories = module {
         AddCityInteractorImpl(
             getCitiesFromRemoteRepositoryUseCase = remoteRepGetCities::getCitiesFromGit, // TODO: можно записать вот в таком формате
             getWeatherFromRemoteRepositoryUseCase = {
+                /**
+                 * TODO: зачем тебе на DI CityEntity ??? О_о
+                 * этот параметр приходит из вне.
+                 * у тебя же тут краш будет, к тому же!
+                 */
                 remoteRepGetWeather.getWeatherFromYandex(city = get<CityEntity>()) },
             getDataFromLocalRepositoryUseCase = { localRep.getAllCityWeatherEntityFromDb() }
         )

@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_add_city_recycler_view)
+        setContentView(R.layout.activity_main)
         Log.d("Test321","MainActivity")
 
         val getCities: IGetCitiesFromRemoteRepository by inject()

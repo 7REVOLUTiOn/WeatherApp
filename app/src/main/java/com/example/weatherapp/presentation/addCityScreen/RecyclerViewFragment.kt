@@ -38,19 +38,19 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_add_city_recycler_view) 
         viewModel.isLoading.observe(viewLifecycleOwner){
             when(it){
                 true -> progressBar.isVisible = false
-                false -> progressBar.isVisible = true
+                false -> progressBar.isVisible = false
             }
         }
 
         viewModel.listOfCityEntity.observe(viewLifecycleOwner){
             val layoutManager = LinearLayoutManager(context)
-            val rvCityList:RecyclerView = view.findViewById(R.id.recyclerView)
+            val rvCityList:RecyclerView = binding.recyclerView
             rvCityList.layoutManager = layoutManager
             val recyclerViewAdapter = RecyclerViewAdapter()
             val rezult = it.map {
                 CityEntityItem(it.cityName)
             }
-            Log.d("Tesing","$rezult")
+            Log.d("Tesing","Кладем резалт:")
             recyclerViewAdapter.update(rezult)
         }
     }

@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 
 class AddCityInteractorImpl(
     private val getCitiesFromRemoteRepositoryUseCase: suspend () -> TRezult<List<CityEntity>>,
-    private val getWeatherFromRemoteRepositoryUseCase: suspend () -> TRezult<WeatherEntity>,
     private val getDataFromLocalRepositoryUseCase: suspend () -> List<CityWeatherEntity>,
 ) : IAddCityInteractor {
 

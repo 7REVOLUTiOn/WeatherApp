@@ -6,6 +6,6 @@ import com.example.weatherapp.utils.TRezult
 
 interface IGetWeatherFromRemoteRepository {
 
-    suspend fun getWeatherFromYandex(city: CityEntity): TRezult<WeatherEntity>
+    suspend fun getWeatherFromRemoteRep(city: CityEntity): TRezult<WeatherEntity>
 
 }

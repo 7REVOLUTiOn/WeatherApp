@@ -17,8 +17,8 @@ class GetWeatherFromRemoteRepositoryImpl(
 
     // TODO: через DI
 
-    override suspend fun getWeatherFromYandex(city: CityEntity): TRezult<WeatherEntity> =
-        //TODO(ПЕРЕИМЕНОВАТЬ)
+    override suspend fun getWeatherFromRemoteRep(city: CityEntity): TRezult<WeatherEntity> =
+        //TODO(ПЕРЕИМЕНОВАТЬ)( готово)
         withContext(Dispatchers.IO) {
             return@withContext runCatching {
                 val weatherBeanToEntity =

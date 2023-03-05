@@ -1,5 +1,6 @@
 package com.example.weatherapp.di
 
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.weatherapp.data.dataBase.Dao
 import com.example.weatherapp.data.dataBase.MainDB
 import com.example.weatherapp.data.implementations.GetCitiesFromRemoteRepositoryImpl
@@ -9,17 +10,18 @@ import com.example.weatherapp.data.localRep.LocalRepositoryImpl
 import com.example.weatherapp.data.retrofit.CitiesAPI
 import com.example.weatherapp.data.retrofit.WeatherAPI
 import com.example.weatherapp.domain.AddCityInteractorImpl
-import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.domain.interfaces.IAddCityInteractor
 import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.domain.interfaces.IGetWeatherFromRemoteRepository
+import com.example.weatherapp.presentation.addCityScreen.RecyclerViewViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
+
 
 val repositories = module {
 
 
-    // а РемотеРепы знают про API
+    // а РемотРепы знают про API
 
     factory<ILocalRepository> {
         val dao = get<Dao>()
@@ -50,16 +52,16 @@ val repositories = module {
 
         AddCityInteractorImpl(
             getCitiesFromRemoteRepositoryUseCase = remoteRepGetCities::getCitiesFromGit, // TODO: можно записать вот в таком формате
-            getWeatherFromRemoteRepositoryUseCase = {
                 /**
                  * TODO: зачем тебе на DI CityEntity ??? О_о
                  * этот параметр приходит из вне.
                  * у тебя же тут краш будет, к тому же!
                  */
-                remoteRepGetWeather.getWeatherFromYandex(city = get<CityEntity>()) },
             getDataFromLocalRepositoryUseCase = { localRep.getAllCityWeatherEntityFromDb() }
         )
     }
+
+
 }
 
 
@@ -72,7 +74,8 @@ val database = module {
     single<Dao> {
         MainDB.getDbWeather(application = androidApplication()).getDao()
     }
-
 }
 
+val viewModel = module {
 
+}

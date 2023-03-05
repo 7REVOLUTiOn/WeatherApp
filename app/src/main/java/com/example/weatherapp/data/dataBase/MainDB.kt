@@ -6,12 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 /**
- * TODO: почему резко стала версия 5?
+ * TODO: почему резко стала версия 5? (готово)
  * ты должен быть снести прилжение с эмулятора и установить заново, с измененной БД.
  * версия БД повышается только на проде. в остальных случаях - чистится на тестовых устройствах.
   */
 
-@Database(entities = [CityWeatherData::class], version = 5)
+@Database(entities = [CityWeatherData::class], version = 1)
 abstract class MainDB : RoomDatabase() {
 
 

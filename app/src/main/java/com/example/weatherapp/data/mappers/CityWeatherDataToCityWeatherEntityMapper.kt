@@ -13,9 +13,9 @@ class CityWeatherDataToCityWeatherEntityMapper {
         CityWeatherEntity(
             city = city,
             weather = weather,
-            isLike = false
+            isLike = true
             /**
-             * TODO: почему то, что возвращается из БД помечано как "нелюбимое"?
+             * TODO: почему то, что возвращается из БД помечано как "нелюбимое"? (готово)
              * все что возвращается из БД - 100% любимое.
              * в модели для БД этого isLike может даже не быть. в маппере и БД в Ентити можно это добавлять.
              */

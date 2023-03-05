@@ -1,10 +1,12 @@
 package com.example.weatherapp.presentation.addCityScreen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.R
 
 class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
 
@@ -21,7 +23,7 @@ class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(viewType,parent,false)
+        val itemView = inflater.inflate(R.layout.city_item,parent,false)
         val holder = Holder(itemView)
         return holder
     }

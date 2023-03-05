@@ -26,10 +26,11 @@
             app:layout_constraintStart_toStartOf="parent"
             android:paddingLeft="10dp" />
 
-        <Button
+        <ImageView
+            android:id="@+id/isLiked"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/ic_is_not_liked"
+            android:src="@drawable/ic_is_not_liked"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

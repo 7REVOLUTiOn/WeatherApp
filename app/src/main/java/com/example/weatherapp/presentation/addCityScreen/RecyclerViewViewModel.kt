@@ -28,7 +28,6 @@ class RecyclerViewViewModel(
 
     init {
         loadingAllCitiesAsync()
-        Log.d("Test321","Запуск ViewModel")
     }
 
     private fun loadingAllCitiesAsync() {
@@ -39,14 +38,12 @@ class RecyclerViewViewModel(
     }
 
     suspend fun loadingAllCities() = withContext(Dispatchers.Main){
-        Log.d("Test321","Загружаем rezult")
         _isLoading.value = true
         val reuzlt = getCitiesListUseCase.invoke()
         when (reuzlt) {
             is TRezult.Error -> TODO()
             is TRezult.Success -> _listOfCityEntity.mValue = reuzlt.data
         }
-        Log.d("Testing","Rezult: ${reuzlt.data}")
         _isLoading.value = false
     }
 

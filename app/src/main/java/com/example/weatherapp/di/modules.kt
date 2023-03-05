@@ -15,6 +15,7 @@ import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.domain.interfaces.IGetWeatherFromRemoteRepository
 import com.example.weatherapp.presentation.addCityScreen.RecyclerViewViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 
@@ -76,6 +77,11 @@ val database = module {
     }
 }
 
-val viewModel = module {
-
+val viewModelModule = module {
+    viewModel<RecyclerViewViewModel> {
+        val addCityInteractorImpl = get<IAddCityInteractor>()
+        RecyclerViewViewModel(
+            getCitiesListUseCase = addCityInteractorImpl::addCityInteractor
+        )
+    }
 }

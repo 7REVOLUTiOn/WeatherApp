@@ -15,14 +15,15 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.fragment_add_city_recycler_view)
+        Log.d("Test321","MainActivity")
 
         val getCities: IGetCitiesFromRemoteRepository by inject()
         val getWeather: IGetWeatherFromRemoteRepository by inject()
         val localRep: ILocalRepository by inject()
 
-        MainScope().launch {
+
+        //MainScope().launch {
 
             //val cities = getCities.getCitiesFromGit()
             //val weather = getWeather.getWeatherFromYandex()
@@ -45,6 +46,6 @@ class MainActivity : AppCompatActivity() {
                 logInfo("")
             }*/
 
-        }
+        //}
     }
 }

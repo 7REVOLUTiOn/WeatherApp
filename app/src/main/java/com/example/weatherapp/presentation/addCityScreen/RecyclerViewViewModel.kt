@@ -1,38 +1,52 @@
 package com.example.weatherapp.presentation.addCityScreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.domain.AddCityInteractorImpl
 import com.example.weatherapp.domain.entities.CityEntity
+import com.example.weatherapp.utils.LiveDataUtils.mValue
 import com.example.weatherapp.utils.TRezult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import kotlinx.coroutines.withContext
 
 class RecyclerViewViewModel(
     private val getCitiesListUseCase: suspend () -> TRezult<List<CityEntity>>
 ) : ViewModel() {
 
+    private var job: Job? = null
+
     private val _listOfCityEntity = MutableLiveData<List<CityEntity>>()
     val listOfCityEntity: LiveData<List<CityEntity>>
         get() = _listOfCityEntity
 
-    val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     init {
-        startFragment()
+        loadingAllCitiesAsync()
+        Log.d("Test321","Запуск ViewModel")
     }
 
-    private fun startFragment() {
-        viewModelScope.launch {
-            _isLoading.value = true
-            val reuzlt = getCitiesListUseCase.invoke()
-            _listOfCityEntity.value = reuzlt.data!!
-            _isLoading.value = false
+    private fun loadingAllCitiesAsync() {
+        job?.cancel()
+        job = viewModelScope.launch {
+            loadingAllCities()
         }
+    }
+
+    suspend fun loadingAllCities() = withContext(Dispatchers.Main){
+        _isLoading.value = true
+        val reuzlt = getCitiesListUseCase.invoke()
+        when (reuzlt) {
+            is TRezult.Error -> TODO()
+            is TRezult.Success -> _listOfCityEntity.mValue = reuzlt.data
+        }
+        Log.d("Testing","${reuzlt.data}")
+        _isLoading.value = false
     }
 
 

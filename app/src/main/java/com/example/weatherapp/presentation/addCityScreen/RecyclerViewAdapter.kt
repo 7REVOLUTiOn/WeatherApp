@@ -23,7 +23,7 @@ class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(R.layout.city_item,parent,false)
+        val itemView = inflater.inflate(R.layout.city_item,parent,false) // TODO: у тебя все Итемы всегда будут на разметке R.layout.city_item ??
         val holder = Holder(itemView)
         return holder
     }

@@ -4,6 +4,11 @@ import androidx.core.content.ContextCompat
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.CityItemBinding
 
+/**
+ * TODO:
+ * 1. переименовать класс. причем тут Ентити?
+ * 2. что такое isLikedCity ? почему он var ?
+ */
 class CityEntityItem(val cityName:String,var isLikedCity:Boolean):RecyclerViewAdapter.Item {
     override fun getItemViewType(): Int = R.layout.city_item
 

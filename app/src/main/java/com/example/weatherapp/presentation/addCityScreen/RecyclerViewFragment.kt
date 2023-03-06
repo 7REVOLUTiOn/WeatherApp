@@ -24,9 +24,13 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_add_city_recycler_view) 
         observeViewModel(view)
     }
 
+    // TODO: вместо viewLifecycleOwner используй написанное liveDataOwner
+
+    // TODO: зачем ты в этот метод передаешь view: View но не используешь их?
     private fun observeViewModel(view: View) {
-        val progressBar = binding.progressBar
+        val progressBar = binding.progressBar // TODO: зачем создаешь переменную?
         viewModel.isLoading.observe(viewLifecycleOwner){
+            // TODO: заменить на progressBar.isVisible = it
             when(it){
                 true -> progressBar.isVisible = true
                 false -> progressBar.isVisible = false
@@ -35,8 +39,8 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_add_city_recycler_view) 
 
         viewModel.listOfCityEntity.observe(viewLifecycleOwner){
             val layoutManager = LinearLayoutManager(context)
-            val rvField:RecyclerView = binding.recyclerView
-            rvField.layoutManager = layoutManager
+            val rvField:RecyclerView = binding.recyclerView // TODO: зачем брать в отдельную переменную?
+            rvField.layoutManager = layoutManager // TODO: тебе надо каждый раз устанавливать и LauoutManager и сам Адаптер?
             val recyclerViewAdapter = RecyclerViewAdapter()
             rvField.adapter = recyclerViewAdapter
             val cityItem = it.map {

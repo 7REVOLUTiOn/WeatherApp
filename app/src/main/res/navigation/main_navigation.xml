@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recyclerViewFragment2"
-        android:name="com.example.weatherapp.presentation.addCityScreen.RecyclerViewFragment"
+        android:name="com.example.weatherapp.presentation.addCityScreen.CityListFragment"
         android:label="fragment_add_city_recycler_view"
-        tools:layout="@layout/fragment_add_city_recycler_view" />
+        tools:layout="@layout/fragment_city_list" />
 </navigation>

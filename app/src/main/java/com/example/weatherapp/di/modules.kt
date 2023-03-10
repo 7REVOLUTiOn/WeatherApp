@@ -1,6 +1,5 @@
 package com.example.weatherapp.di
 
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.weatherapp.data.dataBase.Dao
 import com.example.weatherapp.data.dataBase.MainDB
 import com.example.weatherapp.data.implementations.GetCitiesFromRemoteRepositoryImpl
@@ -13,7 +12,7 @@ import com.example.weatherapp.domain.AddCityInteractorImpl
 import com.example.weatherapp.domain.interfaces.IAddCityInteractor
 import com.example.weatherapp.domain.interfaces.IGetCitiesFromRemoteRepository
 import com.example.weatherapp.domain.interfaces.IGetWeatherFromRemoteRepository
-import com.example.weatherapp.presentation.addCityScreen.RecyclerViewViewModel
+import com.example.weatherapp.presentation.addCityScreen.CityListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -78,9 +77,9 @@ val database = module {
 }
 
 val viewModelModule = module {
-    viewModel<RecyclerViewViewModel> {
+    viewModel<CityListViewModel> {
         val addCityInteractorImpl = get<IAddCityInteractor>()
-        RecyclerViewViewModel(
+        CityListViewModel(
             getCitiesListUseCase = addCityInteractorImpl::addCityInteractor
         )
     }

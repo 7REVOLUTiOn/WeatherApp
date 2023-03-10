@@ -7,4 +7,6 @@ interface ILocalRepository {
 
     suspend fun getAllCityWeatherEntityFromDb(): List<CityWeatherEntity>
 
+    suspend fun addCityWeatherEntityToDb()
+
 }

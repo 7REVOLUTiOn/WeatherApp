@@ -14,6 +14,7 @@ import com.example.weatherapp.databinding.CityItemBinding
 import com.example.weatherapp.databinding.FragmentAddCityRecyclerViewBinding
 import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.utils.LiveDataUtils.liveDataOwner
+import com.example.weatherapp.utils.logInfo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecyclerViewFragment : Fragment(R.layout.fragment_add_city_recycler_view) {
@@ -51,28 +52,14 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_add_city_recycler_view) 
         }
         viewModel.listOfCityEntity.observe(liveDataOwner) {
 
-            val cityItem = it.map {
-                CityItem(it.cityName, it.isLiked,
-                        fun(holder: RecyclerViewAdapter.Holder) {
-                            holder.itemView.apply {
-                                var isLiked = findViewById<ImageView>(R.id.isLiked)
-                                if (it.isLiked) {
-                                    isLiked.setImageDrawable(
-                                        ContextCompat.getDrawable(
-                                            context,
-                                            R.drawable.ic_is_not_liked
-                                        )
-                                    )
-                                    it.isLiked = false
-                                } else {
-                                    isLiked.setImageDrawable(
-                                        ContextCompat.getDrawable(context, R.drawable.ic_is_liked)
-                                    )
-                                    it.isLiked = true
-                                }
-                            }
-                        }
-                    )
+            val cityItem = it.map { city->
+                CityItem(city.cityName, city.isLiked){ isLiked ->
+                    if (isLiked){
+                        //TODO("Добавить в бд")
+                    } else {
+                        //TODO("Удалить из бд)
+                    }
+                }
             }
             recyclerViewAdapter.update(cityItem)
         }

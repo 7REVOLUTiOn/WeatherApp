@@ -38,8 +38,8 @@ class RecyclerViewViewModel(
     }
 
     suspend fun loadingAllCities() = withContext(Dispatchers.Main){
-        // TODO: когда хочешь засетать значеине в LD используй mValue - он более безопасный вариат. но брать значение из ЛД по прежнему классическим value
-        _isLoading.value = true
+        // TODO: когда хочешь засетать значеине в LD используй mValue - он более безопасный вариат. но брать значение из ЛД по прежнему классическим value (готово)
+        _isLoading.mValue = true
         val reuzlt = getCitiesListUseCase.invoke()
         when (reuzlt) {
             is TRezult.Error -> TODO()  // TODO: ты словишь краш приложения, если вернется TResult.Error

@@ -10,6 +10,7 @@ data class CityWeatherData(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+
     @Embedded
     val city: CityEntity,
 

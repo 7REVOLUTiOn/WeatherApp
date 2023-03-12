@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentCityListBinding
 import com.example.weatherapp.utils.LiveDataUtils.liveDataOwner
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CityListFragment : Fragment(R.layout.fragment_city_list) {
+class CityListFragment() : Fragment(R.layout.fragment_city_list) {
 
     private val binding by viewBinding(FragmentCityListBinding::bind)
     private val viewModel by viewModel<CityListViewModel>()
@@ -36,12 +37,12 @@ class CityListFragment : Fragment(R.layout.fragment_city_list) {
 
         viewModel.listOfCityEntity.observe(liveDataOwner) {
 
-            val cityItem = it.map { city->
-                CityItem(city.cityName, city.isLiked){ isLiked ->
-                    if (isLiked){
-                        //TODO("Добавить в бд")
+            val cityItem = it.map { city ->
+                CityItem(city.cityName, city.isLiked) { isLiked ->
+                    if (isLiked) {
+                        viewModel.addCityToFavorite(city)
                     } else {
-                        //TODO("Удалить из бд)
+                        viewModel.deleteCityFromFavorite(city)
                     }
                 }
             }

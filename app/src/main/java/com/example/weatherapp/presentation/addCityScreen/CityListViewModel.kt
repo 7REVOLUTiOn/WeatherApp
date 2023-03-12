@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CityListViewModel(
-    private val getCitiesListUseCase: suspend () -> TRezult<List<CityEntity>>
+    private val getCitiesListUseCase: suspend () -> TRezult<List<CityEntity>>,
+    private val addCityToFavoriteUseCase: suspend (CityEntity) -> Unit,
+    private val deleteCityFromFavoriteUseCase: suspend (CityEntity) -> Unit
 ) : ViewModel() {
 
     private var job: Job? = null
@@ -25,6 +27,18 @@ class CityListViewModel(
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading = _isLoading.asLiveData()
+
+    fun addCityToFavorite(cityEntity: CityEntity){
+        viewModelScope.launch {
+            addCityToFavoriteUseCase.invoke(cityEntity)
+        }
+    }
+
+    fun deleteCityFromFavorite(cityEntity: CityEntity){
+        viewModelScope.launch{
+            deleteCityFromFavoriteUseCase.invoke(cityEntity)
+        }
+    }
 
     init {
         loadingAllCitiesAsync()

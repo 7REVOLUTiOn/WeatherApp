@@ -2,7 +2,6 @@ package com.example.weatherapp.domain
 
 import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.domain.entities.CityWeatherEntity
-import com.example.weatherapp.domain.entities.WeatherEntity
 import com.example.weatherapp.domain.interfaces.IAddCityInteractor
 import com.example.weatherapp.utils.TRezult
 import kotlinx.coroutines.Dispatchers
@@ -11,13 +10,22 @@ import kotlinx.coroutines.withContext
 class AddCityInteractorImpl(
     private val getCitiesFromRemoteRepositoryUseCase: suspend () -> TRezult<List<CityEntity>>,
     private val getDataFromLocalRepositoryUseCase: suspend () -> List<CityWeatherEntity>,
+    private val addCityToFavoriteUseCase: suspend (CityEntity) -> Unit,
+    private val deleteCityFromFavotiteUseCase: suspend (CityEntity) -> Unit
 ) : IAddCityInteractor {
 
-    /*val getCities: IGetCitiesFromRemoteRepository = GetCitiesFromRemoteRepositoryImpl()
-    val getWeather: IGetWeatherFromRemoteRepository = GetWeatherFromRemoteRepositoryImpl()
-    val localRep1: ILocalRepository = LocalRepositoryImpl()*/
 
-    override suspend fun addCityInteractor(): TRezult<List<CityEntity>> =
+    override suspend fun addLikedCityToLocalRep(cityEntity: CityEntity) =
+        withContext(Dispatchers.IO){
+        addCityToFavoriteUseCase.invoke(cityEntity)
+    }
+
+    override suspend fun deleteCityFromLocalRep(cityEntity: CityEntity) =
+        withContext(Dispatchers.IO){
+        deleteCityFromFavotiteUseCase.invoke(cityEntity)
+    }
+
+    override suspend fun getAndSortSitiesFromRemoteAndLocalRep(): TRezult<List<CityEntity>> =
         withContext(Dispatchers.IO) {
             // TODO: УДАЛИТЬ
             val citiesFromRemoteRep = getCitiesFromRemoteRepositoryUseCase.invoke()

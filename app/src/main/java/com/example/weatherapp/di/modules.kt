@@ -26,7 +26,9 @@ val repositories = module {
     factory<ILocalRepository> {
         val dao = get<Dao>()
         LocalRepositoryImpl(
-            getAllWeatherUseCase = dao::getAllWeathers
+            getAllWeatherUseCase = dao::getAllWeathers,
+            addCityToLocalRepositoryUseCase = dao::addCityToLocalRepository,
+            deleteCityFromLocalRepositoryUseCase = dao::deleteCityFromLocalRepository
         )
     }
 
@@ -49,18 +51,18 @@ val repositories = module {
         val remoteRepGetCities = get<IGetCitiesFromRemoteRepository>()
         val remoteRepGetWeather = get<IGetWeatherFromRemoteRepository>()
         val localRep = get<ILocalRepository>()
-
         AddCityInteractorImpl(
             getCitiesFromRemoteRepositoryUseCase = remoteRepGetCities::getCitiesFromGit, // TODO: можно записать вот в таком формате
-                /**
-                 * TODO: зачем тебе на DI CityEntity ??? О_о
-                 * этот параметр приходит из вне.
-                 * у тебя же тут краш будет, к тому же!
-                 */
-            getDataFromLocalRepositoryUseCase = { localRep.getAllCityWeatherEntityFromDb() }
+            /**
+             * TODO: зачем тебе на DI CityEntity ??? О_о
+             * этот параметр приходит из вне.
+             * у тебя же тут краш будет, к тому же!
+             */
+            getDataFromLocalRepositoryUseCase = { localRep.getAllCityWeatherEntityFromDb() },
+            addCityToFavoriteUseCase = { localRep.addCityToLocalRepository(it) },
+            deleteCityFromFavotiteUseCase = { localRep.deleteCityFromLocalRepository(it) }
         )
     }
-
 
 }
 
@@ -80,7 +82,9 @@ val viewModelModule = module {
     viewModel<CityListViewModel> {
         val addCityInteractorImpl = get<IAddCityInteractor>()
         CityListViewModel(
-            getCitiesListUseCase = addCityInteractorImpl::addCityInteractor
+            getCitiesListUseCase = addCityInteractorImpl::getAndSortSitiesFromRemoteAndLocalRep,
+            addCityToFavoriteUseCase = addCityInteractorImpl::addLikedCityToLocalRep,
+            deleteCityFromFavoriteUseCase = addCityInteractorImpl::deleteCityFromLocalRep
         )
     }
 }

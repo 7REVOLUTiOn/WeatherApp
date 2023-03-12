@@ -21,6 +21,7 @@ class CityListViewModel(
 
     private var job: Job? = null
 
+    // TODO: привести в единый вид
     private val _listOfCityEntity = MutableLiveData<List<CityEntity>>()
     val listOfCityEntity: LiveData<List<CityEntity>>
         get() = _listOfCityEntity

@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.weatherapp.domain.entities.CityEntity
 import com.example.weatherapp.domain.entities.WeatherEntity
 
+// TODO: плохое название для таблицы
 @Entity(tableName = "CityWeatherData")
 data class CityWeatherData(
 

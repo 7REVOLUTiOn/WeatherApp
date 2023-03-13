@@ -33,5 +33,24 @@
       "cityName":"Amsterdam",
       "lat": "52.374",
       "lon": "4.88969"
+    },
+    
+     {
+      "cityName":"Berlin",
+      "lat": "52.5244",
+      "lon": "13.4105"
+    },
+    
+     {
+      "cityName":"Pekin",
+      "lat": "39.9075",
+      "lon": "116.397"
+    },
+    
+     {
+      "cityName":"Tokyo",
+      "lat": "35,6895",
+      "lon": "139.692"
     }
+   
 ]

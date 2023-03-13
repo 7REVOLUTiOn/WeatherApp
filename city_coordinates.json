@@ -1,15 +1,32 @@
 [
-    {"cityName":"Minsk",
+    {
+      "cityName":"Minsk",
       "lat": "53.5359",
       "lon": "27.3400"
     },
+    
     {
       "cityName": "Moscow",
       "lat": "55.75396",
       "lon": "37.620393"
     },
-    {"cityName":"Petropavlovsk-Kamchatsky",
+    
+    {
+      "cityName":"Petropavlovsk-Kamchatsky",
       "lat": "53.0444",
       "lon": "158.651"
-    }
+    },
+    
+    {
+      "cityName":"London",
+      "lat": "51.5085",
+      "lon": "0.12574"
+    },
+    
+    {
+      "cityName":"New-York",
+      "lat": "40.7143",
+      "lon": "74.006"
+    },
+    
 ]

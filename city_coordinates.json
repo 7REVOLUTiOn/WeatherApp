@@ -23,13 +23,7 @@
       "lon": "74.006"
     },
     
-     {
-      "cityName":"Petropavlovsk-Kamchatsky",
-      "lat": "53.0444",
-      "lon": "158.651"
-    },
-    
-     {
+    {
       "cityName":"Amsterdam",
       "lat": "52.374",
       "lon": "4.88969"
@@ -51,6 +45,12 @@
       "cityName":"Tokyo",
       "lat": "35,6895",
       "lon": "139.692"
+    },
+    
+    {
+      "cityName":"Petropavlovsk-Kamchatsky",
+      "lat": "53.0444",
+      "lon": "158.651"
     }
    
 ]

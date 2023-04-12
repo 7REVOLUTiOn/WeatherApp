@@ -51,6 +51,12 @@
       "cityName":"Petropavlovsk-Kamchatsky",
       "lat": "53.0444",
       "lon": "158.651"
+    },
+    
+     {
+      "cityName":"Krasnoyarsk",
+      "lat": "56.0184",
+      "lon": "92.8672"
     }
    
 ]
